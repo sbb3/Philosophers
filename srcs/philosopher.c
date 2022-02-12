@@ -12,20 +12,17 @@
 
 #include "../incl/philo.h"
 
-void	puting_down_forks(int id, t_philo *philo)
+void	puting_down_forks(t_philo *philo)
 {
-	pthread_mutex_unlock(&philo->data->locks[PHILO_FORK]);
-	philo->data->forks[PHILO_FORK] = AVAILABLE;
-	pthread_mutex_unlock(&philo->data->locks[NEXT_PHILO_FORK]);
-	philo->data->forks[NEXT_PHILO_FORK] = AVAILABLE;
+	pthread_mutex_unlock(&philo->data->locks[philo->left_fork]);
+	pthread_mutex_unlock(&philo->data->locks[philo->right_fork]);
 }
 
 void	eating(int id, t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->eat_lock);
+	display_status(philo, id, "%ld ms Philo %d is eating\n");
 	philo->philo_status = EATING;
-	if (!philo->data->forks[PHILO_FORK] && !philo->data->forks[NEXT_PHILO_FORK])
-		display_status(philo, id, "%ld ms Philo %d is eating\n");
 	pthread_mutex_unlock(&philo->data->eat_lock);
 	philo->philo_status = NOT_EATING;
 	philo->last_meal = timestamp_im_ms(philo);
@@ -36,11 +33,9 @@ void	eating(int id, t_philo *philo)
 
 void	taking_up_forks(int id, t_philo *philo)
 {
-	pthread_mutex_lock(&philo->data->locks[NEXT_PHILO_FORK]);
-	philo->data->forks[NEXT_PHILO_FORK] = NOT_AVAILABLE;
+	pthread_mutex_lock(&philo->data->locks[philo->left_fork]);
 	display_status(philo, id, "%ld ms Philo %d has taken a fork\n");
-	pthread_mutex_lock(&philo->data->locks[PHILO_FORK]);
-	philo->data->forks[PHILO_FORK] = NOT_AVAILABLE;
+	pthread_mutex_lock(&philo->data->locks[philo->right_fork]);
 	display_status(philo, id, "%ld ms Philo %d has taken a fork\n");
 }
 
@@ -55,7 +50,7 @@ void	*philosopher(void *args)
 	{
 		taking_up_forks(philo->id, philo);
 		eating(philo->id, philo);
-		puting_down_forks(philo->id, philo);
+		puting_down_forks( philo);
 		display_status(philo, philo->id, "%ld ms Philo %d is sleeping\n");
 		ft_sleep(philo->data->time_to_sleep);
 		display_status(philo, philo->id, "%ld ms Philo %d is thinking\n");

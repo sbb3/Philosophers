@@ -20,15 +20,12 @@
 # include <pthread.h>
 # include <limits.h>
 
-# define PHILO_FORK (id % philo->data->number_of_philosophers)
-# define NEXT_PHILO_FORK ((id + 1) % philo->data->number_of_philosophers)
 # define AVAILABLE 1
 # define NOT_AVAILABLE 0
 # define START 1
 # define STOP 0
 # define EATING 1
 # define NOT_EATING 0
-# define ZERO 0
 
 typedef struct s_philo
 {
@@ -36,6 +33,8 @@ typedef struct s_philo
 	int				philo_status;
 	int				philo_eat_count;
 	long			last_meal;
+	int				left_fork;
+	int				right_fork;
 	struct s_data	*data;
 }	t_philo;
 
@@ -56,6 +55,7 @@ typedef struct s_data
 	int				count;
 	int				max_eats;
 	int				notepme_argument;
+
 	struct s_philo	*philos;
 }	t_data;
 
@@ -80,6 +80,6 @@ void	clear(t_data *data);
 void	*philosopher(void *philo_number);
 void	taking_up_forks(int philo_num, t_philo *philo);
 void	eating(int philo_num, t_philo *philo);
-void	puting_down_forks(int philo_num, t_philo *philo);
+void	puting_down_forks(t_philo *philo);
 
 #endif
