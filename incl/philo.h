@@ -6,7 +6,7 @@
 /*   By: adouib <adouib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:02:37 by adouib            #+#    #+#             */
-/*   Updated: 2022/02/11 18:45:04 by adouib           ###   ########.fr       */
+/*   Updated: 2022/02/15 17:26:47 by adouib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_philo
 	long			last_meal;
 	int				left_fork;
 	int				right_fork;
+
 	struct s_data	*data;
 }	t_philo;
 

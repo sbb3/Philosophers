@@ -6,7 +6,7 @@
 /*   By: adouib <adouib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 14:17:30 by adouib            #+#    #+#             */
-/*   Updated: 2022/02/11 18:51:39 by adouib           ###   ########.fr       */
+/*   Updated: 2022/02/15 17:28:47 by adouib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ int	eat_count(t_data *data, int i)
 
 int	is_dead_yet(t_data *data, int i)
 {
-	if (((get_time() - data->start_time) - data->philos[i].last_meal) >= data->time_to_die \
-		&& !data->philos[i].philo_status)
+	if (((get_time() - data->start_time) - data->philos[i].last_meal) \
+		>= data->time_to_die && !data->philos[i].philo_status)
 	{
 		data->simulation_begin = STOP;
-		printf("%ld ms Philo %d died\n", timepassed_im_ms(data), data->philos[i].id);
+		printf("%ld ms Philo %d died\n", \
+			timepassed_im_ms(data), data->philos[i].id);
 		return (1);
 	}
 	return (0);
