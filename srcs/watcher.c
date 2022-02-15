@@ -6,7 +6,7 @@
 /*   By: adouib <adouib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 14:17:30 by adouib            #+#    #+#             */
-/*   Updated: 2022/02/15 17:28:47 by adouib           ###   ########.fr       */
+/*   Updated: 2022/02/15 18:55:51 by adouib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	watcher(t_data *data)
 {
 	int	i;
 
-	while (1)
+	while (1337)
 	{
 		i = -1;
 		while (++i < data->number_of_philosophers)
