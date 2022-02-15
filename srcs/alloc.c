@@ -20,9 +20,6 @@ int	alloc(t_data *data)
 	data->philos = malloc(sizeof(t_philo) * philos_count);
 	if (!data->philos)
 		return (0);
-	data->forks = malloc(sizeof(int) * philos_count);
-	if (!data->forks)
-		return (0);
 	data->locks = malloc(sizeof(pthread_mutex_t) * philos_count);
 	if (!data->locks)
 		return (0);

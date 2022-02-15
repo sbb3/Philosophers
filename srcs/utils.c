@@ -39,8 +39,6 @@ void	clear(t_data *data)
 	pthread_mutex_destroy(&data->display_lock);
 	if (data->philos)
 		free(data->philos);
-	if (data->forks)
-		free(data->forks);
 	if (data->locks)
 		free(data->locks);
 	if (data->tid)

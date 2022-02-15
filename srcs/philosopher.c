@@ -50,7 +50,7 @@ void	*philosopher(void *args)
 	{
 		taking_up_forks(philo->id, philo);
 		eating(philo->id, philo);
-		puting_down_forks( philo);
+		puting_down_forks(philo);
 		display_status(philo, philo->id, "%ld ms Philo %d is sleeping\n");
 		ft_sleep(philo->data->time_to_sleep);
 		display_status(philo, philo->id, "%ld ms Philo %d is thinking\n");

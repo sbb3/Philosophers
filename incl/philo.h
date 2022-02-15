@@ -20,8 +20,6 @@
 # include <pthread.h>
 # include <limits.h>
 
-# define AVAILABLE 1
-# define NOT_AVAILABLE 0
 # define START 1
 # define STOP 0
 # define EATING 1
@@ -42,7 +40,6 @@ typedef struct s_data
 {
 	pthread_t		*tid;
 	pthread_mutex_t	*locks;
-	int				*forks;
 	pthread_mutex_t	display_lock;
 	pthread_mutex_t	eat_lock;
 	int				number_of_philosophers;
